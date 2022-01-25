@@ -1,4 +1,4 @@
-package com.yt.netty;
+package com.yt.demoguide;
 
 import io.netty.buffer.ByteBuf;
 
