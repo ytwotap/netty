@@ -1,8 +1,7 @@
 package com.yt.demoguide.server;
 
-import com.yt.demoguide.decode.TimeDecoder;
-import com.yt.demoguide.handler.TimeClientHandler;
-import com.yt.nettydemo.client.handler.NettyClientHandler;
+import com.yt.demoguide.decode.solution.TimeDecoder;
+import com.yt.demoguide.handler.solution.TimeClientHandler2;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -46,7 +45,7 @@ public class Client {
                                         SocketChannel socketChannel
                                 ) throws Exception {
                                     socketChannel.pipeline().addLast(
-                                            new TimeDecoder(),new TimeClientHandler()
+                                            new TimeDecoder(), new TimeClientHandler2()
                                     );
 
                                     // 可以继续调用 socketChannel.pipeline().addLast()

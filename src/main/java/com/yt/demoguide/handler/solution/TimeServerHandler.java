@@ -1,8 +1,7 @@
-package com.yt.demoguide.handler;
+package com.yt.demoguide.handler.solution;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 

@@ -1,5 +1,6 @@
-package com.yt.demoguide.decode;
+package com.yt.demoguide.decode.pojo;
 
+import com.yt.demoguide.bean.UnixTime;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
@@ -16,13 +17,29 @@ import java.util.List;
  * @date: 2022/1/25/025
  */
 
-public class TimeDecoder extends ByteToMessageDecoder { // (1) 实现ChannelInboundHandler 并实现decode 方法 解码
+public class TimeDecoder2 extends ByteToMessageDecoder { // (1) 实现ChannelInboundHandler 并实现decode 方法 解码
+    /**
+     * 被循环调用
+     *  while (in.isReadable()) {  # 可读 调用
+     *                 int outSize = out.size();
+     *                 int oldInputLength = in.readableBytes();
+     *                 decode(ctx, in, out);
+     *                 。。。
+     *                 }
+     * @param ctx
+     * @param in
+     * @param out
+     */
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) { // (2) call this method  when new message
-        if (in.readableBytes() < 2) {
+        if (in.readableBytes() < 1) {
             return; // (3)
         }
+        //读取指针
+        System.out.println("readindex"+in.readerIndex());
+        //写入指针
+        System.out.println("writeIndex"+in.writerIndex());
         //not need to decode multiple messages.
-        out.add(in.readBytes(2)); // (4) read the cumulative buffer.
+        out.add(new UnixTime(in.readUnsignedInt())); // 使用pojo 且一次读取一个int 赋值
     }
 }

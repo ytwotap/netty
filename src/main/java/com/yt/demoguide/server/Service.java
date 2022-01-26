@@ -1,7 +1,8 @@
 package com.yt.demoguide.server;
 
-import com.yt.demoguide.handler.TimeServerHandler;
-import com.yt.nettydemo.service.handler.NettyServerHandler;
+import com.yt.demoguide.encode.pojo.TimeEncoder;
+import com.yt.demoguide.handler.pojo.TimeServerHandler2;
+import com.yt.demoguide.handler.solution.TimeServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -23,6 +24,7 @@ public class Service {
      * 2. 业务处理由 workerGroup 来完成
      */
     public int test;
+
     /**
      * 需要的依赖：
      * <dependency>
@@ -66,7 +68,7 @@ public class Service {
                                         SocketChannel socketChannel
                                 ) throws Exception {
                                     socketChannel.pipeline().addLast(
-                                            new TimeServerHandler()
+                                             new TimeServerHandler()
                                     );
 
                                     // 可以继续调用 socketChannel.pipeline().addLast()
